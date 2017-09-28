@@ -20,6 +20,10 @@ group :development, :test do
   gem 'selenium-webdriver'
 end
 
+group :test do
+  gem 'rspec_junit_formatter'
+end
+
 group :development do
   gem 'awesome_print'
   gem 'annotate', '~> 2'
