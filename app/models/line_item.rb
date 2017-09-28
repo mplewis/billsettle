@@ -11,6 +11,7 @@
 #  account    :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  category   :text
 #
 
 class LineItem < ApplicationRecord

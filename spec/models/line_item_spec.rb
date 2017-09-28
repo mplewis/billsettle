@@ -11,6 +11,7 @@
 #  account    :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  category   :text
 #
 
 require 'rails_helper'
@@ -18,7 +19,7 @@ require 'rails_helper'
 RSpec.describe LineItem, type: :model do
   subject do
     LineItem.new date: Date.new, desc: '7-Eleven', desc_orig: '7-ELEVEN**', cents: 199, txn_type: 'debit',
-                 account: 'Chase'
+                 account: 'Chase', category: 'Fast Food'
   end
 
   describe 'txn_type' do
