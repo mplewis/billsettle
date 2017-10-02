@@ -7,11 +7,14 @@ html
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    .container
-      .col-xs-12
-        .row
+    = render 'layouts/navbar'
+    .container-fluid
+      .row
+        .col
           - if notice
             .alert.alert-primary = notice
           - if alert
             .alert.alert-warning = alert
-      = yield
+      .row.content
+        .col
+          = yield

@@ -1,0 +1,13 @@
+.bg-light
+  .container-fluid
+    .row
+      .col
+        nav.navbar.navbar-expand-lg.navbar-light.px-0.justify-content-between
+          .navbar-nav
+            a.navbar-brand href='/' Billsettle
+            /a.nav-item.nav-link href='/'  Link
+          .navbar-nav
+            - if signed_in?
+              = link_to 'Sign Out', destroy_user_session_path, method: 'delete', class: 'nav-item nav-link'
+            - else
+              = link_to 'Sign In', new_user_session_path, class: 'nav-item nav-link'
