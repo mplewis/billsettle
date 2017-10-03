@@ -1,5 +1,5 @@
 export default {
-  render() {
+  render () {
     return <h1>Body</h1>
   }
 }

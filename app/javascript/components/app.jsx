@@ -2,7 +2,7 @@ import Navbar from './navbar'
 import Body from './body'
 
 export default {
-  render() {
+  render () {
     return (
       <div>
         <Navbar />
