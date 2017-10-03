@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe InvoiceImporter do
   describe '.import_csv' do
-    subject { described_class.import_csv csv }
+    subject { described_class.import_csv csv, creator, assignee }
     let(:csv) do
       <<~CSV
         "Date","Description","Original Description","Amount","Transaction Type","Category","Account Name","Labels","Notes"
@@ -11,10 +11,13 @@ describe InvoiceImporter do
         "9/12/2017","Winchells Donut House","WINCHELLS DONUT HOUSE","8.66","debit","Fast Food","Simple","",""
       CSV
     end
+    let(:creator) { create :user }
+    let(:assignee) { create :user }
     let(:item) { LineItem.first }
 
     it 'creates line items properly' do
       expect(subject.count).to be 3
+      expect(LineItem.count).to be 3
       expect(item.date).to eq Date.new(2017, 8, 15)
       expect(item.desc).to eq 'King Soopers'
       expect(item.desc_orig).to eq 'KING SOOPERS #11'
@@ -23,6 +26,8 @@ describe InvoiceImporter do
       expect(item.debit?).to be true
       expect(item.category).to eq 'Groceries'
       expect(item.account).to eq 'Chase'
+      expect(item.creator).to eq creator
+      expect(item.assignee).to eq assignee
     end
   end
 end
