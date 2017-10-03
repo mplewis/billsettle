@@ -1,8 +1,10 @@
-h1 Resolved by me
+h1 Archive
 
 table.table.table-striped
   thead
     tr
+      th
+      th Status
       th Date
       th Description
       th Original Desc.
@@ -10,9 +12,16 @@ table.table.table-striped
       th Amount
       th Type
       th Account
+      th Note
   tbody
     - @items.each do |item|
       tr
+        td = check_box_tag 'selected'
+        td
+          - if item.approved?
+            span.badge.badge-success Approved
+          - elsif item.rejected?
+            span.badge.badge-success Rejected
         td = item.date
         td = item.desc
         td = item.desc_orig
@@ -20,3 +29,4 @@ table.table.table-striped
         td = item.cents
         td = item.txn_type
         td = item.account
+        td = text_field_tag 'note'

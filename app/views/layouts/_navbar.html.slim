@@ -5,7 +5,11 @@
         nav.navbar.navbar-expand-lg.navbar-light.px-0.justify-content-between
           .navbar-nav
             a.navbar-brand href='/' Billsettle
-            = link_to 'Inbox', inbox_path, class: 'nav-item nav-link'
+            = link_to inbox_path, class: 'nav-item nav-link' do
+              ' Inbox
+              - if inbox_count > 0
+                span.badge.badge-danger = inbox_count
+
             = link_to 'My items', history_path, class: 'nav-item nav-link'
             = link_to 'Import', import_invoice_index_path, class: 'nav-item nav-link'
           .navbar-nav

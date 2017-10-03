@@ -2,23 +2,32 @@ h1 Inbox
 
 p = link_to 'View past items assigned to me', archive_path
 
-table.table.table-striped
-  thead
-    tr
-      th Date
-      th Description
-      th Original Desc.
-      th Category
-      th Amount
-      th Type
-      th Account
-  tbody
-    - @items.each do |item|
+= form_tag method: :put do
+  .input-group
+    = button_tag 'Approve checked', name: 'approve', value: true, class: 'mr-2 btn btn-success'
+    = button_tag 'Reject checked', name: 'reject', value: true, class: 'mr-2 btn btn-danger'
+  table.table.table-striped.mt-2
+    thead
       tr
-        td = item.date
-        td = item.desc
-        td = item.desc_orig
-        td = item.category
-        td = item.cents
-        td = item.txn_type
-        td = item.account
+        th
+        th Date
+        th Description
+        th Original Desc.
+        th Category
+        th Amount
+        th Type
+        th Account
+        th Note
+    tbody
+      - @items.each do |item|
+        = fields_for item do |f|
+          tr
+            td = check_box_tag 'item_ids[]', item.id
+            td = item.date
+            td = item.desc
+            td = item.desc_orig
+            td = item.category
+            td = item.cents
+            td = item.txn_type
+            td = item.account
+            td = f.text_field :note

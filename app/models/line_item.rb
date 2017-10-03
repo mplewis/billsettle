@@ -14,6 +14,8 @@
 #  category    :text
 #  creator_id  :integer
 #  assignee_id :integer
+#  note        :text
+#  status      :integer          default("pending")
 #
 # Indexes
 #
@@ -28,5 +30,11 @@ class LineItem < ApplicationRecord
   enum txn_type: {
     debit: 1,
     credit: 2,
+  }
+
+  enum status: {
+    pending: 1,
+    approved: 2,
+    rejected: 3,
   }
 end

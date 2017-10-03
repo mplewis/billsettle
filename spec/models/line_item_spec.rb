@@ -14,6 +14,8 @@
 #  category    :text
 #  creator_id  :integer
 #  assignee_id :integer
+#  note        :text
+#  status      :integer          default("pending")
 #
 # Indexes
 #

@@ -9,6 +9,7 @@ gem 'rails', '~> 5.1'
 
 gem 'puma', '~> 3.7'
 gem 'sqlite3'
+gem 'webpacker', '~> 3.0'
 
 gem 'bootstrap', '~> 4.0.0.beta'
 gem 'bootstrap_form', github: 'bootstrap-ruby/rails-bootstrap-forms', branch: 'bootstrap-v4'
