@@ -1,6 +1,11 @@
 import Vue from 'vue'
-import App from '../components/app.vue'
+
+import App from '../components/app.jsx'
+
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 document.addEventListener('DOMContentLoaded', () => {
-  new Vue(App).$mount('#app')
+  const app = new Vue(App)
+  app.$mount('#app')
 })
