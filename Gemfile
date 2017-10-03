@@ -11,6 +11,7 @@ gem 'puma', '~> 3.7'
 gem 'sqlite3'
 
 gem 'bootstrap', '~> 4.0.0.beta'
+gem 'bootstrap_form', github: 'bootstrap-ruby/rails-bootstrap-forms', branch: 'bootstrap-v4'
 gem 'devise-bootstrap-views', github: 'hisea/devise-bootstrap-views', branch: 'bootstrap4'
 gem 'sass-rails', '~> 5.0'
 gem 'slim-rails', '~> 3.1'

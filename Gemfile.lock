@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/bootstrap-ruby/rails-bootstrap-forms.git
+  revision: 16d82d6d8c32b5f6dcbe14ab3a3189e6b012839c
+  branch: bootstrap-v4
+  specs:
+    bootstrap_form (2.6.0)
+
+GIT
   remote: https://github.com/hisea/devise-bootstrap-views.git
   revision: 34e2c7b5d5c22295a2cea4265c4f31deba29be18
   branch: bootstrap4
@@ -232,6 +239,7 @@ DEPENDENCIES
   annotate (~> 2)
   awesome_print
   bootstrap (~> 4.0.0.beta)
+  bootstrap_form!
   capybara (~> 2.13)
   devise (~> 4.3)
   devise-bootstrap-views!

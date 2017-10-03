@@ -1,0 +1,4 @@
+= bootstrap_form_tag do |f|
+  = f.select :assignee, other_users_by_email, required: true
+  = f.file_field :csv, label: 'Invoice CSV', required: true
+  = f.submit class: 'btn btn-primary'

@@ -1,0 +1,22 @@
+h1 Created by me
+
+table.table.table-striped
+  thead
+    tr
+      th Date
+      th Description
+      th Original Desc.
+      th Category
+      th Amount
+      th Type
+      th Account
+  tbody
+    - @items.each do |item|
+      tr
+        td = item.date
+        td = item.desc
+        td = item.desc_orig
+        td = item.category
+        td = item.cents
+        td = item.txn_type
+        td = item.account

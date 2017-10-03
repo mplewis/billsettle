@@ -5,7 +5,9 @@
         nav.navbar.navbar-expand-lg.navbar-light.px-0.justify-content-between
           .navbar-nav
             a.navbar-brand href='/' Billsettle
-            /a.nav-item.nav-link href='/'  Link
+            = link_to 'Import', import_invoice_index_path, class: 'nav-item nav-link'
+            = link_to 'Mine', items_mine_path, class: 'nav-item nav-link'
+            = link_to 'Theirs', items_theirs_path, class: 'nav-item nav-link'
           .navbar-nav
             - if signed_in?
               = link_to 'Sign Out', destroy_user_session_path, method: 'delete', class: 'nav-item nav-link'

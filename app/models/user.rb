@@ -27,4 +27,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  has_many :created, class_name: 'LineItem', foreign_key: 'creator_id'
+  has_many :assigned, class_name: 'LineItem', foreign_key: 'assignee_id'
 end
