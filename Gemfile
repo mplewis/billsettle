@@ -14,6 +14,7 @@ gem 'webpacker', '~> 3.0'
 gem 'bootstrap', '~> 4.0.0.beta'
 gem 'bootstrap_form', github: 'bootstrap-ruby/rails-bootstrap-forms', branch: 'bootstrap-v4'
 gem 'devise-bootstrap-views', github: 'hisea/devise-bootstrap-views', branch: 'bootstrap4'
+gem 'graphql'
 gem 'sass-rails', '~> 5.0'
 gem 'slim-rails', '~> 3.1'
 gem 'turbolinks', '~> 5'
@@ -40,3 +41,5 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0'
 end
+
+gem 'graphiql-rails', group: :development

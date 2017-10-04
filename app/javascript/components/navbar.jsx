@@ -25,7 +25,7 @@ export default {
   render () {
     return (
       <div class="bg-light">
-        <b-container fluid>
+        <b-container fluid class="px-0">
           <b-navbar type="light" variant="light">
             <b-navbar-brand to="/">NavBar</b-navbar-brand>
             <b-nav is-nav-bar>

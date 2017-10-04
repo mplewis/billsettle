@@ -8,7 +8,9 @@ export default {
     return (
       <div>
         <Navbar inboxCount={0} />
-        <router-view />
+        <b-container fluid class="content">
+          <router-view />
+        </b-container>
       </div>
     )
   }
