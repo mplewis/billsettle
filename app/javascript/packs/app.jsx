@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import BootstrapVue from 'bootstrap-vue'
-import Cookies from 'js-cookie'
 
 import store from '../shared/store'
 import routes from '../shared/routes'
@@ -24,6 +23,5 @@ document.addEventListener('DOMContentLoaded', () => {
     ...Layout
   })
 
-  app.$store.commit('setSessionKey', Cookies.get('visitor_id'))
   app.$mount('#app')
 })

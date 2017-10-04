@@ -1,5 +1,4 @@
 import routes from '../shared/routes'
-import axios from 'axios'
 
 function currentPath () {
   return window.location.href.split('/#').slice(1).join('')
@@ -20,10 +19,6 @@ export default {
           </b-nav-item>
         )
       })
-    },
-
-    signOut () {
-      axios.delete('/users/sign_out', { withCredentials: true })
     }
   },
 
