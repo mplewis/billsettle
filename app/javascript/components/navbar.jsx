@@ -1,4 +1,5 @@
 import routes from '../shared/routes'
+import axios from 'axios'
 
 function currentPath () {
   return window.location.href.split('/#').slice(1).join('')
@@ -19,20 +20,33 @@ export default {
           </b-nav-item>
         )
       })
+    },
+
+    signOut () {
+      axios.delete('/users/sign_out', { withCredentials: true })
     }
   },
 
   render () {
     return (
-      <div class='bg-light'>
+      <div class="bg-light">
         <b-container fluid>
-          <b-navbar type='light' variant='light'>
-            <b-navbar-brand to='/'>NavBar</b-navbar-brand>
+          <b-navbar type="light" variant="light">
+            <b-navbar-brand to="/">NavBar</b-navbar-brand>
             <b-nav is-nav-bar>
               {this.renderRoutes()}
             </b-nav>
-            <b-nav is-nav-bar class='ml-auto'>
-              <b-nav-item href='#'>Sign Out</b-nav-item>
+            <b-nav is-nav-bar class="ml-auto">
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  rel="nofollow"
+                  data-method="delete"
+                  href="/users/sign_out"
+                >
+                  Sign Out
+                </a>
+              </li>
             </b-nav>
           </b-navbar>
         </b-container>

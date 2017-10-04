@@ -4,7 +4,9 @@ html
     meta content='text/html; charset=UTF-8' http-equiv="Content-Type"
     title Billsettle
     = csrf_meta_tags
-    - unless @frontend
+    - if @frontend
+      = javascript_include_tag 'rails_ujs'
+    - else
       = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
       = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
@@ -13,6 +15,10 @@ html
       #app
     - else
       .container-fluid
+        - if notice
+          .alert.alert-primary role='alert' = notice
+        - if alert
+          .alert.alert-danger role='alert' = alert
         .row.content
           .col
             = yield
