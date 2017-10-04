@@ -5,7 +5,7 @@ export default {
   },
   render () {
     return (
-      <a className='nav-item nav-link' href={this.href}>
+      <a class='nav-item nav-link' href={this.href}>
         {this.$slots.default}
       </a>
     )

@@ -8,20 +8,20 @@ export default {
 
   render () {
     return (
-      <div className='bg-light'>
-        <div className='container-fluid'>
-          <div className='row'>
-            <div className='col'>
-              <nav className='navbar navbar-expand-lg navbar-light px-0 justify-content-between'>
-                <div className='navbar-nav'>
-                  <a className='navbar-brand' href='/'>Billsettle</a>
+      <div class='bg-light'>
+        <div class='container-fluid'>
+          <div class='row'>
+            <div class='col'>
+              <nav class='navbar navbar-expand-lg navbar-light px-0 justify-content-between'>
+                <div class='navbar-nav'>
+                  <a class='navbar-brand' href='/'>Billsettle</a>
                   <NavItem href='/inbox'>Inbox&nbsp;
-                    <span className='badge badge-danger'>{this.inboxCount}</span>
+                    <span class='badge badge-danger'>{this.inboxCount}</span>
                   </NavItem>
                   <NavItem href='/history'>My items</NavItem>
                   <NavItem href='/import_invoice'>Import</NavItem>
                 </div>
-                <div className='navbar-nav'>
+                <div class='navbar-nav'>
                   <NavItem rel='nofollow' data-method='delete' href='/users/sign_out'>Sign Out</NavItem>
                 </div>
               </nav>
