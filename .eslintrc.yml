@@ -1,7 +1,7 @@
 extends:
   - standard
   - plugin:react/recommended
-  - vue
+  - plugin:vue/recommended
 
 rules:
   react/react-in-jsx-scope: 0
