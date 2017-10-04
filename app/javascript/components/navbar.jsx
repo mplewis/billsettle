@@ -1,5 +1,8 @@
-import NavItem from './nav_item'
 import routes from '../shared/routes'
+
+function currentPath () {
+  return window.location.href.split('/#').slice(1).join('')
+}
 
 export default {
   name: 'Navbar',
@@ -11,11 +14,9 @@ export default {
     renderRoutes () {
       return routes.filter(route => route.path !== '/').map(route => {
         return (
-          <router-link to={route.path}>
-            <NavItem for={route.path}>
-              {route.name}
-            </NavItem>
-          </router-link>
+          <b-nav-item active={route.path === currentPath()} to={route.path}>
+            {route.name}
+          </b-nav-item>
         )
       })
     }
@@ -24,29 +25,17 @@ export default {
   render () {
     return (
       <div class='bg-light'>
-        <div class='container-fluid'>
-          <div class='row'>
-            <div class='col'>
-              <nav class='navbar navbar-expand-lg navbar-light px-0 justify-content-between'>
-                <div class='navbar-nav'>
-                  <router-link to='/' class='navbar-brand'>
-                    Billsettle
-                  </router-link>
-                  {this.renderRoutes()}
-                </div>
-                <div class='navbar-nav'>
-                  <NavItem
-                    rel='nofollow'
-                    data-method='delete'
-                    href='/users/sign_out'
-                  >
-                    Sign Out
-                  </NavItem>
-                </div>
-              </nav>
-            </div>
-          </div>
-        </div>
+        <b-container fluid>
+          <b-navbar type='light' variant='light'>
+            <b-navbar-brand to='/'>NavBar</b-navbar-brand>
+            <b-nav is-nav-bar>
+              {this.renderRoutes()}
+            </b-nav>
+            <b-nav is-nav-bar class='ml-auto'>
+              <b-nav-item href='#'>Sign Out</b-nav-item>
+            </b-nav>
+          </b-navbar>
+        </b-container>
       </div>
     )
   }
