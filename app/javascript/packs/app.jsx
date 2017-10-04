@@ -2,20 +2,14 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import routes from '../shared/routes'
+import Layout from '../components/layout'
+
+Vue.use(VueRouter)
+const router = new VueRouter({ routes })
 
 document.addEventListener('DOMContentLoaded', () => {
-  Vue.use(VueRouter)
-  const router = new VueRouter({ routes })
-  console.log(router)
-
-  const app = {
+  new Vue({
     router,
-
-    name: 'App',
-    render () {
-      return <router-view />
-    }
-  }
-
-  new Vue(app).$mount('#app')
+    ...Layout
+  }).$mount('#app')
 })

@@ -1,9 +1,24 @@
 import NavItem from './nav_item'
+import routes from '../shared/routes'
 
 export default {
   name: 'Navbar',
   props: {
     inboxCount: { type: Number, required: true }
+  },
+
+  methods: {
+    renderRoutes () {
+      return routes.filter(route => route.path !== '/').map(route => {
+        return (
+          <router-link to={route.path}>
+            <NavItem for={route.path}>
+              {route.name}
+            </NavItem>
+          </router-link>
+        )
+      })
+    }
   },
 
   render () {
@@ -14,15 +29,19 @@ export default {
             <div class='col'>
               <nav class='navbar navbar-expand-lg navbar-light px-0 justify-content-between'>
                 <div class='navbar-nav'>
-                  <a class='navbar-brand' href='/'>Billsettle</a>
-                  <NavItem href='/inbox'>Inbox&nbsp;
-                    <span class='badge badge-danger'>{this.inboxCount}</span>
-                  </NavItem>
-                  <NavItem href='/history'>My items</NavItem>
-                  <NavItem href='/import_invoice'>Import</NavItem>
+                  <router-link to='/' class='navbar-brand'>
+                    Billsettle
+                  </router-link>
+                  {this.renderRoutes()}
                 </div>
                 <div class='navbar-nav'>
-                  <NavItem rel='nofollow' data-method='delete' href='/users/sign_out'>Sign Out</NavItem>
+                  <NavItem
+                    rel='nofollow'
+                    data-method='delete'
+                    href='/users/sign_out'
+                  >
+                    Sign Out
+                  </NavItem>
                 </div>
               </nav>
             </div>

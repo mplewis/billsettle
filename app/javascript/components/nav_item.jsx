@@ -1,11 +1,17 @@
+function currentPath () {
+  return window.location.href.split('/#').slice(1).join('')
+}
+
 export default {
   name: 'NavItem',
   props: {
-    href: { type: String, required: true }
+    for: { type: String, required: true }
   },
   render () {
     return (
-      <a class='nav-item nav-link' href={this.href}>
+      <a
+        class={['nav-item', 'nav-link', { active: currentPath() === this.for }]}
+      >
         {this.$slots.default}
       </a>
     )
