@@ -8,6 +8,7 @@
     "@rails/webpacker": "^3.0.1",
     "apollo-client": "^1.9.3",
     "bootstrap": "^4.0.0-beta",
+    "graphql-tag": "^2.4.2",
     "vue": "^2.4.4",
     "vue-apollo": "^2.1.0-rc.5",
     "vuex": "^2.4.1"
