@@ -3,7 +3,7 @@ Types::QueryType = GraphQL::ObjectType.define do
 
   field :users, !types[Types::UserType] do
     argument :assignable, types.Boolean
-    resolve ->(_obj, args, _ctx) do
+    resolve ->(_obj, args, ctx) do
       return User.all.reject { |u| ctx[:current_user] == u } if args[:assignable]
       User.all
     end
