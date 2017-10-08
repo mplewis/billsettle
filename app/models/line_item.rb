@@ -16,6 +16,7 @@
 #  assignee_id :integer
 #  note        :text
 #  status      :integer          default("pending")
+#  debt_owner  :integer
 #
 # Indexes
 #
@@ -37,4 +38,22 @@ class LineItem < ApplicationRecord
     approved: 2,
     rejected: 3,
   }
+
+  enum debt_owner: {
+    creator: 1,
+    assignee: 2,
+    split: 3,
+  }
+
+  def incomplete?
+    !assigned? && !done?
+  end
+
+  def assigned?
+    !done? && debt_owner.present? && assignee.present?
+  end
+
+  def done?
+    debt_owner == 'creator' || status == 'approved' || status == 'rejected'
+  end
 end

@@ -16,6 +16,7 @@
 #  assignee_id :integer
 #  note        :text
 #  status      :integer          default("pending")
+#  debt_owner  :integer
 #
 # Indexes
 #
@@ -26,15 +27,74 @@
 require 'rails_helper'
 
 RSpec.describe LineItem, type: :model do
-  subject do
-    LineItem.new date: Date.new, desc: '7-Eleven', desc_orig: '7-ELEVEN**', cents: 199, txn_type: 'debit',
-                 account: 'Chase', category: 'Fast Food'
+  subject { LineItem.new **attribs }
+  let :attribs { base_attribs }
+  let :base_attribs do
+    {date: Date.new, desc: '7-Eleven', desc_orig: '7-ELEVEN**', cents: 199, txn_type: 'debit',
+     account: 'Chase', category: 'Fast Food'}
   end
 
   describe 'txn_type' do
     it 'works like an enum' do
       expect(subject.debit?).to be true
       expect(subject.txn_type).to eq 'debit'
+    end
+  end
+
+  describe 'states' do
+    let :user { User.new(email: 'test', password: 'test') }
+
+    context 'with a fresh new line item' do
+      it 'is incomplete' do
+        expect(subject.incomplete?).to be true
+        expect(subject.assigned?).to be false
+        expect(subject.done?).to be false
+      end
+    end
+
+    context 'after being assigned' do
+      let :attribs { base_attribs.merge({assignee: user}) }
+      it 'is incomplete' do
+        expect(subject.incomplete?).to be true
+        expect(subject.assigned?).to be false
+        expect(subject.done?).to be false
+      end
+    end
+
+    context 'after being assigned and adding debt owner' do
+      let :attribs { base_attribs.merge({assignee: user, debt_owner: 'split'}) }
+      it 'is assigned' do
+        expect(subject.incomplete?).to be false
+        expect(subject.assigned?).to be true
+        expect(subject.done?).to be false
+      end
+    end
+
+    context 'after being assigned and setting debt owner to creator' do
+      let :attribs { base_attribs.merge({debt_owner: 'creator'}) }
+      it 'is done' do
+        expect(subject.incomplete?).to be false
+        expect(subject.assigned?).to be false
+        expect(subject.done?).to be true
+      end
+    end
+
+    context 'when status is approved' do
+      let :attribs { base_attribs.merge({assignee: user, debt_owner: 'split', status: 'approved'}) }
+      it 'is done' do
+        expect(subject.incomplete?).to be false
+        expect(subject.assigned?).to be false
+        expect(subject.done?).to be true
+      end
+    end
+
+    context 'when status is rejected' do
+      let :attribs { base_attribs.merge({assignee: user, debt_owner: 'split', status: 'approved'}) }
+      it 'is done' do
+        expect(subject.incomplete?).to be false
+        expect(subject.assigned?).to be false
+        expect(subject.done?).to be true
+      end
     end
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171003162000) do
+ActiveRecord::Schema.define(version: 20171008215816) do
 
   create_table "line_items", force: :cascade do |t|
     t.datetime "date"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20171003162000) do
     t.integer "assignee_id"
     t.text "note"
     t.integer "status", default: 1
+    t.integer "debt_owner"
     t.index ["assignee_id"], name: "index_line_items_on_assignee_id"
     t.index ["creator_id"], name: "index_line_items_on_creator_id"
   end
