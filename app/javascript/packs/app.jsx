@@ -5,12 +5,13 @@ import { ApolloClient, createNetworkInterface } from 'apollo-client'
 import VueApollo from 'vue-apollo'
 import BootstrapVue from 'bootstrap-vue'
 
+// Put Bootstrap up here so child component CSS is imported later
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
 import store from '../shared/store'
 import routes from '../shared/routes'
 import Layout from '../components/layout'
-
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.use(Vuex)
 Vue.use(VueRouter)

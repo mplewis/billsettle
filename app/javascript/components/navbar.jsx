@@ -1,5 +1,7 @@
 import routes from '../shared/routes'
 
+import '../stylesheets/navbar.sass'
+
 function currentPath () {
   return window.location.href.split('/#').slice(1).join('')
 }
@@ -15,7 +17,7 @@ export default {
       return routes.filter(route => route.path !== '/').map(route => {
         return (
           <b-nav-item active={route.path === currentPath()} to={route.path}>
-            {route.name}
+            {route.name || route.component.name}
           </b-nav-item>
         )
       })
