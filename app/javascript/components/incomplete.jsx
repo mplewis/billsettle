@@ -37,7 +37,6 @@ export default {
   },
   methods: {
     assignee () {
-      console.log(this.users)
       return (
         <b-row>
           <b-col>
