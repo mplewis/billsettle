@@ -27,7 +27,7 @@ export default {
       <div class="bg-light">
         <b-container fluid class="px-0">
           <b-navbar type="light" variant="light">
-            <b-navbar-brand to="/">NavBar</b-navbar-brand>
+            <b-navbar-brand to="/">Billsettle</b-navbar-brand>
             <b-nav is-nav-bar>
               {this.renderRoutes()}
             </b-nav>

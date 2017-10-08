@@ -1,14 +1,14 @@
 import gql from 'graphql-tag'
 
 export default {
-  name: 'Body',
+  name: 'Home',
   data: () => ({
-    allUsers: []
+    users: []
   }),
   apollo: {
-    allUsers: gql`
+    users: gql`
       {
-        allUsers {
+        users {
           id
           email
         }
@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     userRows () {
-      return this.allUsers.map(user =>
+      return this.users.map(user =>
         <tr>
           <td>
             {user.id}
@@ -33,6 +33,7 @@ export default {
     return (
       <b-row>
         <b-col>
+          <h1>All Users</h1>
           <table class="table table-striped table-hover">
             <thead>
               <tr>
