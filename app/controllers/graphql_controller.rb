@@ -5,9 +5,6 @@ class GraphqlController < ApplicationController
     variables = ensure_hash(params[:variables])
     query = params[:query]
     operation_name = params[:operationName]
-    context = {
-      current_user: current_user,
-    }
     result = BillsettleSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
   end
@@ -30,5 +27,11 @@ class GraphqlController < ApplicationController
     else
       raise ArgumentError, "Unexpected parameter: #{ambiguous_param}"
     end
+  end
+
+  def context
+    {
+      current_user: current_user,
+    }
   end
 end

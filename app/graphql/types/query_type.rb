@@ -1,31 +1,26 @@
 Types::QueryType = GraphQL::ObjectType.define do
   name 'Query'
 
-  field :allUsers, !types[Types::UserType] do
-    description 'All users'
-    resolve ->(_obj, _args, _ctx) do
+  field :users, !types[Types::UserType] do
+    argument :assignable, types.Boolean
+    resolve ->(_obj, args, _ctx) do
+      return User.all.reject { |u| ctx[:current_user] == u } if args[:assignable]
       User.all
     end
   end
 
-  field :allLineItems, !types[Types::LineItemType] do
-    description 'All line items'
-    resolve ->(_obj, _args, _ctx) do
-      LineItem.all
-    end
-  end
-
-  field :lineItemsCreatedByMe, !types[Types::LineItemType] do
-    description 'Line items assigned to the current user'
-    resolve ->(_obj, _args, ctx) do
-      LineItem.where creator: ctx[:current_user]
-    end
-  end
-
-  field :lineItemsAssignedToMe, !types[Types::LineItemType] do
-    description 'Line items assigned to the current user'
-    resolve ->(_obj, _args, ctx) do
-      LineItem.where assignee: ctx[:current_user]
+  field :lineItems, !types[Types::LineItemType] do
+    argument :creator, types.ID
+    argument :assignee, types.ID
+    argument :created_by_me, types.Boolean
+    argument :assigned_to_me, types.Boolean
+    resolve ->(_obj, args, ctx) do
+      items = LineItem.all
+      items = items.where creator_id: args[:creator] if args[:creator]
+      items = items.where assignee_id: args[:assignee] if args[:assignee]
+      items = items.where creator: ctx[:current_user] if args[:created_by_me]
+      items = items.where assignee: ctx[:current_user] if args[:assigned_to_me]
+      items
     end
   end
 end
