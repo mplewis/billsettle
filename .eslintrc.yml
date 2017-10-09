@@ -3,6 +3,12 @@ extends:
   - plugin:react/recommended
   - plugin:vue/recommended
 
+env:
+  mocha: true
+
+globals:
+  expect: false
+
 rules:
   react/react-in-jsx-scope: 0
   react/no-unknown-property: 0
