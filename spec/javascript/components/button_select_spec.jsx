@@ -1,16 +1,6 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import VueRouter from 'vue-router'
-import VueApollo from 'vue-apollo'
-import BootstrapVue from 'bootstrap-vue'
-
+import 'shared/vue'
 import { mount } from 'avoriaz'
 import ButtonSelect from 'components/button_select'
-
-Vue.use(Vuex)
-Vue.use(VueRouter)
-Vue.use(VueApollo)
-Vue.use(BootstrapVue)
 
 describe('ButtonSelect', function () {
   it('works', function () {
@@ -24,6 +14,7 @@ describe('ButtonSelect', function () {
       }
     })
     console.log(comp.html())
+    console.log(comp.first('button').html())
     expect(comp).to.exist
   })
 })
