@@ -2,6 +2,8 @@ import gql from 'graphql-tag'
 import { formatMoney } from 'accounting'
 import moment from 'moment'
 
+import ButtonSelect from './button_select'
+
 export default {
   name: 'Incomplete',
   data: () => ({
@@ -79,6 +81,7 @@ export default {
                   <th>Description</th>
                   <th>Category</th>
                   <th>Account</th>
+                  <th>Debt owner</th>
                 </tr>
               </thead>
               <tbody>
@@ -117,6 +120,16 @@ export default {
           </td>
           <td>
             {item.account}
+          </td>
+          <td>
+            <ButtonSelect
+              stateChanged={s => console.log(s)}
+              buttons={[
+                { name: 'All me', value: 'creator', color: 'primary' },
+                { name: 'Split', value: 'split', color: 'info' },
+                { name: 'All them', value: 'assignee', color: 'success' }
+              ]}
+            />
           </td>
         </tr>
       )
