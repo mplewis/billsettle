@@ -992,6 +992,10 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
+bdd-lazy-var@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/bdd-lazy-var/-/bdd-lazy-var-1.3.0.tgz#fcb889c7c183ff73b4740ba5d955fe1543216dc7"
+
 better-assert@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/better-assert/-/better-assert-1.0.2.tgz#40866b9e1b9e0b55b481894311e68faffaebc522"

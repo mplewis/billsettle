@@ -3,6 +3,10 @@ env:
 
 globals:
   expect: false
+  sinon: false
+  subject: false
+  def: false
+  get: false
 
 rules:
   no-unused-expressions: 0
