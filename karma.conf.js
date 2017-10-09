@@ -1,14 +1,18 @@
-const webpackConfig = require('./config/webpack/test.js')
+const webpack = require('./config/webpack/test.js')
+
+const specs = ['spec/javascript/**/*.js', 'spec/javascript/**/*.jsx']
+
+const files = specs.map(glob => ({ pattern: glob, watched: false }))
+const preprocessors = {}
+specs.forEach(glob => (preprocessors[glob] = ['webpack', 'sourcemap']))
 
 module.exports = function (config) {
   config.set({
     reporters: ['mocha'],
-    frameworks: ['mocha', 'chai'],
+    frameworks: ['mocha', 'sinon-chai'],
     browsers: ['jsdom'],
-    files: [{ pattern: 'spec/javascript/**/*.js', watched: false }],
-    preprocessors: {
-      'spec/javascript/**/*.js': ['webpack', 'sourcemap']
-    },
-    webpack: webpackConfig
+    files,
+    preprocessors,
+    webpack
   })
 }
