@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import Vue from 'shared/vue'
 import VueRouter from 'vue-router'
 import { ApolloClient, createNetworkInterface } from 'apollo-client'
 import VueApollo from 'vue-apollo'

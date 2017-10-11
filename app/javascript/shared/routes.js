@@ -1,9 +1,9 @@
 import Home from '../components/home'
-import Incomplete from '../components/incomplete'
+import IncompleteData from '../components/incomplete_data'
 import Inbox from '../components/inbox'
 
 export default [
   { path: '/', component: Home },
-  { path: '/incomplete', component: Incomplete },
+  { path: '/incomplete', name: 'Incomplete', component: IncompleteData },
   { path: '/inbox', component: Inbox }
 ]
