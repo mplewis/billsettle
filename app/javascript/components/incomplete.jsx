@@ -21,7 +21,7 @@ export default {
 
   props: {
     lineItems: { type: Array, required: true },
-    assignees: { type: Array, required: true }
+    assignees: { type: Array, required: true },
     submitted: { type: Function, required: true }
   },
 
