@@ -31,7 +31,7 @@ export default {
     buttonText () {
       if (!this.assignee) return 'Select an assignee'
       if (this.itemCount === 0) return 'Select some items'
-      return `Submit ${this.itemCount} ${pluralize('item', this.itemCount)}`
+      return `Submit ${pluralize(this.itemCount, 'item')}`
     },
 
     enabled () {

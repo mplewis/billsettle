@@ -1,4 +1,4 @@
-export default function (word, count) {
-  if (count === 1) return word
-  return `${word}s`
+export default function (count, word) {
+  const s = count === 1 ? '' : 's'
+  return `${count} ${word}${s}`
 }
