@@ -20,6 +20,7 @@ describe('AssigneeAndSubmit', function () {
 
   context('with no items selected', function () {
     def('itemCount', () => 0)
+
     it('disables the button', function () {
       expect(get('button').hasAttribute('disabled')).to.be.true
     })
@@ -56,6 +57,7 @@ describe('AssigneeAndSubmit', function () {
           beforeEach(function () {
             get('button').trigger('click')
           })
+
           it('passes the full assignee back', function () {
             expect(get('submitted')).to.have.been.calledWith(
               get('assignees')[0]
