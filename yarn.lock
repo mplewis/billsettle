@@ -3549,6 +3549,13 @@ karma-jsdom-launcher@^6.1.2:
   version "6.1.2"
   resolved "https://registry.yarnpkg.com/karma-jsdom-launcher/-/karma-jsdom-launcher-6.1.2.tgz#f44ad3986df096463e5bfb437dc9f35db9917a05"
 
+karma-junit-reporter@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/karma-junit-reporter/-/karma-junit-reporter-1.2.0.tgz#4f9c40cedfb1a395f8aef876abf96189917c6396"
+  dependencies:
+    path-is-absolute "^1.0.0"
+    xmlbuilder "8.2.2"
+
 karma-mocha-reporter@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/karma-mocha-reporter/-/karma-mocha-reporter-2.2.4.tgz#0c9cb22c27d864d0f6694df0cf01caabce9064d4"
@@ -6778,6 +6785,10 @@ wtf-8@1.0.0:
 xml-name-validator@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/xml-name-validator/-/xml-name-validator-2.0.1.tgz#4d8b8f1eccd3419aa362061becef515e1e559635"
+
+xmlbuilder@8.2.2:
+  version "8.2.2"
+  resolved "https://registry.yarnpkg.com/xmlbuilder/-/xmlbuilder-8.2.2.tgz#69248673410b4ba42e1a6136551d2922335aa773"
 
 xmlhttprequest-ssl@1.5.3:
   version "1.5.3"

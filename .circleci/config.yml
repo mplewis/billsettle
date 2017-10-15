@@ -22,14 +22,17 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "Gemfile.lock" }}
+          - v1-dependencies-{{ checksum "Gemfile.lock" }}-{{ checksum "package.json" }}-{{ checksum "yarn.lock" }}
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
       - run:
-          name: install dependencies
-          command: |
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
+          name: bundle install
+          command: bundle install --jobs=4 --retry=3 --path vendor/bundle
+
+      - run:
+          name: yarn install
+          command: yarn install
 
       - save_cache:
           paths:
@@ -42,12 +45,20 @@ jobs:
 
       # run tests!
       - run:
-          name: run tests
+          name: RSpec
           command: |
             mkdir /tmp/test-results
             rspec --format progress \
                   --format RspecJunitFormatter \
                   --out /tmp/test-results/rspec.xml
+
+      - run:
+          name: Karma
+          command: yarn test --single-run
+
+      - run:
+          name: ESLint
+          command: yarn lint
 
       # collect reports
       - store_test_results:

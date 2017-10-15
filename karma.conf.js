@@ -14,14 +14,25 @@ const mocha = {
   require: [require.resolve('bdd-lazy-var/bdd_lazy_var_rspec')]
 }
 
-module.exports = function (config) {
-  config.set({
-    reporters: ['mocha'],
-    frameworks: ['mocha', 'sinon-chai'],
-    browsers: ['jsdom'],
-    client: { mocha },
-    files,
-    preprocessors,
-    webpack
-  })
+const config = {
+  reporters: ['mocha'],
+  frameworks: ['mocha', 'sinon-chai'],
+  browsers: ['jsdom'],
+  client: { mocha },
+  files,
+  preprocessors,
+  webpack
+}
+
+if (process.env.CI) {
+  config.reporters.push('junit')
+  config.junitReporter = {
+    outputDir: '/tmp/test-results',
+    outputFile: 'karma.xml',
+    useBrowserName: false
+  }
+}
+
+module.exports = function (base) {
+  base.set(config)
 }
