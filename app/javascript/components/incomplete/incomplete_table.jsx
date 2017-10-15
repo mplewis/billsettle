@@ -26,7 +26,7 @@ export default {
     buttonSelectFor (lineItem) {
       return (
         <ButtonSelect
-          stateChanged={state => this.stateChanged(lineItem.id, state)}
+          stateChanged={state => this.stateChanged(lineItem, state)}
           buttons={splitButtons}
         />
       )
