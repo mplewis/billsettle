@@ -1,6 +1,6 @@
 import gql from 'graphql-tag'
 
-import Incomplete from './incomplete'
+import IncompleteLayout from './incomplete_layout'
 
 export default {
   name: 'IncompleteData',
@@ -38,10 +38,10 @@ export default {
   },
   render () {
     return (
-      <Incomplete
+      <IncompleteLayout
         lineItems={this.lineItems}
         assignees={this.users}
-        submitted={this.submitted}
+        submitted={console.log}
       />
     )
   }

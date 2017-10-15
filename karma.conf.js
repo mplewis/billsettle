@@ -10,8 +10,8 @@ const preprocessors = {}
 files.forEach(glob => (preprocessors[glob] = ['webpack', 'sourcemap']))
 
 const mocha = {
-  ui: 'bdd-lazy-var/getter',
-  require: [require.resolve('bdd-lazy-var/bdd_lazy_var_getter')]
+  ui: 'bdd-lazy-var/rspec',
+  require: [require.resolve('bdd-lazy-var/bdd_lazy_var_rspec')]
 }
 
 module.exports = function (config) {
