@@ -1,11 +1,9 @@
-const doc = require('heredocument')
 const { exec } = require('shelljs')
 const { writeFileSync, existsSync } = require('fs')
 const webpack = require('./config/webpack/test.js')
 
 const globalSchemaFile = 'tmp/global_schema.js'
-
-if (!existsSync('tmp/global_schema.js')) {
+if (!existsSync(globalSchemaFile)) {
   writeFileSync(
     globalSchemaFile,
     `window.GRAPHQL_SCHEMA_STRING = \`${exec('rails graphql:schema')}\``
