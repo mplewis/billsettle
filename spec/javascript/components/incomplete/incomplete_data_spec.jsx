@@ -1,4 +1,4 @@
-import apolloProvider from 'core/apollo_provider'
+import apolloProvider from '../../scaffold/mock_apollo_provider'
 
 import IncompleteData from 'components/incomplete/incomplete_data'
 import IncompleteLayout from 'components/incomplete/incomplete_layout'
