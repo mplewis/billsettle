@@ -17,6 +17,7 @@
     "vuex": "^2.4.1"
   },
   "devDependencies": {
+    "apollo-test-utils": "^0.3.2",
     "avoriaz": "^6.0.0",
     "babel-helper-vue-jsx-merge-props": "^2.0.2",
     "babel-plugin-syntax-jsx": "^6.18.0",
@@ -33,6 +34,8 @@
     "eslint-plugin-react": "^7.4.0",
     "eslint-plugin-standard": "^3.0.1",
     "eslint-plugin-vue": "beta",
+    "faker": "^4.1.0",
+    "heredocument": "^2.0.2",
     "jsdom": "^11.3.0",
     "karma": "^1.7.1",
     "karma-jsdom-launcher": "^6.1.2",
@@ -43,6 +46,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.5",
     "mocha": "^4.0.1",
+    "shelljs": "^0.7.8",
     "sinon": "^4.0.1",
     "sinon-chai": "^2.14.0",
     "vue-router": "^2.7.0",

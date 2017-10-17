@@ -51,7 +51,6 @@ export default {
       return (
         <thead>
           <tr>
-            <th>Creator</th>
             <th>Date</th>
             <th>Amount</th>
             <th>Description</th>
@@ -67,7 +66,6 @@ export default {
       const that = this
       function itemCols (i) {
         return [
-          i.creator.email,
           /* TODO: Figure out how to output this data from the server as ISO8601 */
           moment(i.date).format(),
           formatMoney(i.cents / 100),

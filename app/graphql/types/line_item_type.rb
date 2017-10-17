@@ -1,7 +1,7 @@
 Types::LineItemType = GraphQL::ObjectType.define do
   name 'LineItem'
 
-  field :id, !types.Int
+  field :id, !types.ID
   field :created_at, !types.String
   field :updated_at, !types.String
 

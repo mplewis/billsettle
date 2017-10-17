@@ -1,26 +1,16 @@
-import Vue from 'shared/vue'
+import Vue from 'core/vue'
 import VueRouter from 'vue-router'
-import { ApolloClient, createNetworkInterface } from 'apollo-client'
-import VueApollo from 'vue-apollo'
 
 // Put Bootstrap up here so child component CSS is imported later
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-import store from '../shared/store'
-import routes from '../shared/routes'
-import Layout from '../components/layout'
+import store from 'core/store'
+import apolloProvider from 'core/apollo_provider'
+import routes from 'shared/routes'
+import Layout from 'components/layout'
 
 const router = new VueRouter({ routes })
-
-const apolloClient = new ApolloClient({
-  connectToDevTools: true,
-  networkInterface: createNetworkInterface({
-    uri: 'http://localhost:3000/graphql',
-    opts: { credentials: 'same-origin' }
-  })
-})
-const apolloProvider = new VueApollo({ defaultClient: apolloClient })
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({

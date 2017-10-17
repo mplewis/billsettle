@@ -15,9 +15,6 @@ export default {
       {
         lineItems(incomplete: true, created_by_me: true) {
           id
-          creator {
-            email
-          }
           date
           cents
           desc
