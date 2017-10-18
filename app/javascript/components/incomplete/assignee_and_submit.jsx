@@ -38,12 +38,17 @@ export default {
       return Boolean(this.assignee && this.itemCount > 0)
     },
 
+    submit () {
+      if (!this.enabled()) return
+      this.submitted(this.assignee)
+    },
+
     submitButton () {
       return (
         <b-btn
           variant={this.enabled() ? 'primary' : 'secondary'}
           disabled={!this.enabled()}
-          onClick={() => this.submitted(this.assignee)}
+          onClick={this.submit}
         >
           {this.buttonText()}
         </b-btn>

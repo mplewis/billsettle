@@ -9,13 +9,13 @@ export default {
     submitted: { type: Function, required: true }
   },
   data: () => ({
-    tableState: {},
-    assignee: null
+    tableState: {}
   }),
   methods: {
-    updateTableState (id, value) {
-      if (value) {
-        this.$set(this.tableState, id, value)
+    updateTableState (lineItem, state) {
+      const id = lineItem.id
+      if (state) {
+        this.$set(this.tableState, id, state)
       } else {
         this.$delete(this.tableState, id)
       }
@@ -23,15 +23,9 @@ export default {
     itemCount () {
       return Object.keys(this.tableState).length
     },
-    valid () {
-      return Boolean(this.assignee && this.itemCount() > 0)
-    },
-    handleSubmit () {
-      if (!this.valid()) return
-      this.submitted({
-        itemsToUpdate: this.tableState,
-        assignee: this.assignee
-      })
+    handleSubmit (assignee) {
+      if (this.itemCount() === 0) return
+      this.submitted({ assignee, itemsToUpdate: this.tableState })
     }
   },
   render () {
@@ -41,9 +35,7 @@ export default {
           <h1>Incomplete</h1>
           <AssigneeAndSubmit
             assignees={this.assignees}
-            enabled={this.valid()}
             itemCount={this.itemCount()}
-            assigneeChanged={assignee => (this.assignee = assignee)}
             submitted={this.handleSubmit}
           />
           <IncompleteTable
