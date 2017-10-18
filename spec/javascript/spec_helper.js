@@ -1,6 +1,7 @@
 import 'core/vue'
-import { mount } from 'avoriaz'
+import { mount, shallow } from 'avoriaz'
 
 Object.assign(window, {
-  mount
+  mount,
+  shallow
 })
