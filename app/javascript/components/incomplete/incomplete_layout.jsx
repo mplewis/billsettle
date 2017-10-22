@@ -20,6 +20,14 @@ export default {
         this.$delete(this.tableState, id)
       }
     },
+    clearObsoleteTableState () {
+      const lineItemIds = this.lineItems.map(i => i.id)
+      Object.keys(this.tableState).forEach(id => {
+        if (!lineItemIds.includes(id)) {
+          this.$delete(this.tableState, id)
+        }
+      })
+    },
     itemCount () {
       return Object.keys(this.tableState).length
     },
@@ -27,6 +35,9 @@ export default {
       if (this.itemCount() === 0) return
       this.submitted({ assignee, itemsToUpdate: this.tableState })
     }
+  },
+  beforeUpdate () {
+    this.clearObsoleteTableState()
   },
   render () {
     return (

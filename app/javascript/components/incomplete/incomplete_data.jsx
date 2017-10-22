@@ -33,12 +33,36 @@ export default {
       }
     `
   },
+  methods: {
+    updateIncompletes ({ assignee, itemsToUpdate }) {
+      this.$apollo
+        .mutate({
+          variables: {
+            assignee_id: assignee.id,
+            items: Object.entries(itemsToUpdate).map(([id, debtOwner]) => ({
+              id,
+              debt_owner: debtOwner
+            }))
+          },
+          mutation: gql`
+            mutation($assignee_id: ID!, $items: [LineItemIncompleteType!]!) {
+              updateIncompletes(assignee_id: $assignee_id, items: $items) {
+                id
+                desc
+                debt_owner
+              }
+            }
+          `
+        })
+        .then(() => this.$apollo.queries.lineItems.refetch())
+    }
+  },
   render () {
     return (
       <IncompleteLayout
         lineItems={this.lineItems}
         assignees={this.users}
-        submitted={console.log}
+        submitted={this.updateIncompletes}
       />
     )
   }
