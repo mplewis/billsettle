@@ -1,8 +1,11 @@
 import IncompleteLayout from 'components/incomplete/incomplete_layout'
 
 describe('IncompleteLayout', function () {
-  const lineItems = ['item 1', 'item 2']
-  const assignees = ['assignee 1', 'assignee 2']
+  const lineItems = [{ id: 1 }, { id: 2 }]
+  const assignees = [
+    { id: 1, email: 'matt@mplewis.com' },
+    { id: 2, email: 'anna@mplewis.com' }
+  ]
   subject(() =>
     shallow(IncompleteLayout, {
       propsData: { lineItems, assignees, submitted: get('submitted') }
@@ -10,43 +13,21 @@ describe('IncompleteLayout', function () {
   )
   def('submitted', sinon.spy)
 
-  it('shows the invalid state and forbids submission', function () {
-    expect(subject().vm.valid()).to.be.false
-    subject().vm.handleSubmit()
-    expect(get('submitted')).to.not.be.called
-  })
-
   context('after receiving table item states', function () {
     beforeEach(function () {
-      subject().vm.updateTableState(1, 'creator')
-      subject().vm.updateTableState(2, 'assignee')
+      subject().vm.updateTableState({ id: 1 }, 'creator')
+      subject().vm.updateTableState({ id: 2 }, 'assignee')
     })
 
-    it('shows the invalid state and forbids submission', function () {
-      expect(subject().vm.valid()).to.be.false
-      subject().vm.handleSubmit()
-      expect(get('submitted')).to.not.be.called
-    })
-
-    context('after receiving assignee', function () {
+    context('when submitting', function () {
       beforeEach(function () {
-        subject().vm.assignee = { id: 1, email: 'matt@mplewis.com' }
+        subject().vm.handleSubmit({ id: 1, email: 'matt@mplewis.com' })
       })
 
-      it('shows the valid state', function () {
-        expect(subject().vm.valid()).to.be.true
-      })
-
-      context('when submitting', function () {
-        beforeEach(function () {
-          subject().vm.handleSubmit()
-        })
-
-        it('passes its data to the parent', function () {
-          expect(get('submitted')).to.be.calledWith({
-            itemsToUpdate: { 1: 'creator', 2: 'assignee' },
-            assignee: { id: 1, email: 'matt@mplewis.com' }
-          })
+      it('passes its data to the parent', function () {
+        expect(get('submitted')).to.be.calledWith({
+          itemsToUpdate: { 1: 'creator', 2: 'assignee' },
+          assignee: { id: 1, email: 'matt@mplewis.com' }
         })
       })
     })
