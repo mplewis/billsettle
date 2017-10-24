@@ -2,6 +2,8 @@ Types::MutationType = GraphQL::ObjectType.define do
   name 'Mutation'
 
   field :updateIncompletes, !types[!Types::LineItemType] do
+    # TODO: Extract into testable service class
+    # TODO: Validate items are incompletes
     argument :assignee_id, !types.ID
     argument :items, !types[!LineItemIncompleteType]
 
