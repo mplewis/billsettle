@@ -10,7 +10,8 @@ Types::LineItemType = GraphQL::ObjectType.define do
   field :debt_owner, types.String
 
   field :date, !types.String do
-    resolve ->(obj, _, _) { obj.date.iso8601 }
+    # TODO: Migrate DateTime to a Date type
+    resolve ->(obj, _, _) { obj.date.to_date.iso8601 }
   end
   field :cents, !types.Int
   field :account, !types.String
