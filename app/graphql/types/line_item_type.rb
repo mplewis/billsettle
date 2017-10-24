@@ -9,7 +9,9 @@ Types::LineItemType = GraphQL::ObjectType.define do
   field :status, !types.String
   field :debt_owner, types.String
 
-  field :date, !types.String
+  field :date, !types.String do
+    resolve ->(obj, _, _) { obj.date.iso8601 }
+  end
   field :cents, !types.Int
   field :account, !types.String
   field :category, !types.String

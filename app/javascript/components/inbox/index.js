@@ -2,7 +2,7 @@ import gql from 'graphql-tag'
 import { formatMoney } from 'accounting'
 import moment from 'moment'
 
-import '../stylesheets/inbox.sass'
+import 'stylesheets/inbox.sass'
 
 export default {
   name: 'Inbox',
