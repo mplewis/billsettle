@@ -43,7 +43,6 @@ export default {
     return (
       <b-row>
         <b-col>
-          <h1>Incomplete</h1>
           <AssigneeAndSubmit
             assignees={this.assignees}
             itemCount={this.itemCount()}

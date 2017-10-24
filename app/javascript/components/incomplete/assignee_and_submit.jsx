@@ -46,6 +46,7 @@ export default {
     submitButton () {
       return (
         <b-btn
+          class="ml-4"
           variant={this.enabled() ? 'primary' : 'secondary'}
           disabled={!this.enabled()}
           onClick={this.submit}
@@ -59,18 +60,17 @@ export default {
   render () {
     return (
       <div class="d-flex justify-content-between">
+        <h1>Incomplete</h1>
         <p>
           Assign items to:&nbsp;
           <select
             onChange={e => {
               this.assignee = this.assignees.find(a => a.id === e.target.value)
             }}
-            class={['custom-select', { 'is-invalid': !this.assignee }]}
+            class={['custom-select', 'ml-1', { 'is-invalid': !this.assignee }]}
           >
             {this.optionsForUsers()}
           </select>
-        </p>
-        <p>
           {this.submitButton()}
         </p>
       </div>
