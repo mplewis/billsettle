@@ -35,6 +35,7 @@
     "eslint-plugin-standard": "^3.0.1",
     "eslint-plugin-vue": "beta",
     "faker": "^4.1.0",
+    "hard-source-webpack-plugin": "^0.4.9",
     "jsdom": "^11.3.0",
     "karma": "^1.7.1",
     "karma-jsdom-launcher": "^6.1.2",
