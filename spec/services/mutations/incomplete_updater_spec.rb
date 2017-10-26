@@ -20,6 +20,7 @@ describe Mutations::IncompleteUpdater do
 
     it 'updates line item debt owners' do
       expect(subject.count).to be 3
+      expect(LineItem.all.map(&:assignee).uniq).to eq [assignee]
       expect(LineItem.find(1).debt_owner).to eq 'assignee'
       expect(LineItem.find(2).debt_owner).to eq 'creator'
       expect(LineItem.find(3).debt_owner).to eq 'split'
