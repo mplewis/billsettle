@@ -38,6 +38,7 @@ end
 group :development do
   gem 'awesome_print'
   gem 'annotate', '~> 2'
+  gem 'pry-rails'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0'
 end
