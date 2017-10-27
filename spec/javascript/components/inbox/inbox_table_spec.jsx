@@ -1,4 +1,4 @@
-import IncompleteTable from 'components/incomplete/incomplete_table'
+import InboxTable from 'components/inbox/inbox_table'
 
 const lineItems = [11, 12, 13].map(i => ({
   id: i,
@@ -15,17 +15,18 @@ const lineItems = [11, 12, 13].map(i => ({
   debt_owner: 'split'
 }))
 
-describe('IncompleteTable', function () {
+describe('InboxTable', function () {
   subject(() =>
-    mount(IncompleteTable, {
+    mount(InboxTable, {
       propsData: {
         lineItems,
-        stateChanged: get('stateChanged')
+        submitted: get('submitted')
       }
     })
   )
-  def('assignDebtToMe', () => subject().first('button'))
-  def('stateChanged', sinon.spy)
+  def('submitted', sinon.spy)
+  def('submitButton', () => subject().first('.submit'))
+  def('approveButton', () => subject().first('tbody button'))
 
   it('renders line items', function () {
     expect(subject().text()).to.include('Apple Store Cherry Creek')
@@ -34,11 +35,41 @@ describe('IncompleteTable', function () {
     expect(subject().find('tbody tr').length).to.eq(3)
   })
 
-  context('when clicking a button', function () {
-    beforeEach(() => get('assignDebtToMe').trigger('click'))
+  it('disables the submit button', function () {
+    expect(get('submitButton').hasAttribute('disabled')).to.be.true
+  })
 
-    it('calls stateChanged', function () {
-      expect(get('stateChanged')).to.be.calledWith(lineItems[0], 'creator')
+  context('when submitting', function () {
+    beforeEach(() => get('submitButton').trigger('click'))
+
+    it('prevents submission', function () {
+      expect(get('submitted')).to.not.have.been.called
+    })
+  })
+
+  context('when assigning an item', function () {
+    beforeEach(() => get('approveButton').trigger('click'))
+
+    it('enables the submit button', function () {
+      expect(get('submitButton').hasAttribute('disabled')).to.be.false
+    })
+
+    context('then unassigning that item', function () {
+      beforeEach(() => get('approveButton').trigger('click'))
+
+      it('disables the submit button', function () {
+        expect(get('submitButton').hasAttribute('disabled')).to.be.true
+      })
+    })
+
+    context('when submitting', function () {
+      beforeEach(() => get('submitButton').trigger('click'))
+
+      it('calls submitted', function () {
+        expect(get('submitted')).to.be.calledWith({
+          itemsToUpdate: { 11: 'approved' }
+        })
+      })
     })
   })
 })

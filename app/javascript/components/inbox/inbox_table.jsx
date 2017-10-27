@@ -29,36 +29,20 @@ export default {
 
   methods: {
     itemRows () {
-      return this.lineItems.map(item =>
+      return this.lineItems.map(item => (
         <tr>
-          <td>
-            {item.creator.email}
-          </td>
-          <td>
-            {moment(item.date).format(short)}
-          </td>
-          <td>
-            {formatMoney(item.cents / 100)}
-          </td>
+          <td>{item.creator.email}</td>
+          <td>{moment(item.date).format(short)}</td>
+          <td>{formatMoney(item.cents / 100)}</td>
           <td class="item-desc">
-            <p>
-              {item.desc}
-            </p>
+            <p>{item.desc}</p>
             <pre>
-              <code>
-                {item.desc_orig}
-              </code>
+              <code>{item.desc_orig}</code>
             </pre>
           </td>
-          <td>
-            {item.category}
-          </td>
-          <td>
-            {item.account}
-          </td>
-          <td>
-            {prettyDebtOwner[item.debt_owner]}
-          </td>
+          <td>{item.category}</td>
+          <td>{item.account}</td>
+          <td>{prettyDebtOwner[item.debt_owner]}</td>
           <td>
             <ButtonSelect
               stateChanged={state => this.updateTableState(item, state)}
@@ -69,7 +53,7 @@ export default {
             <textarea placeholder="Add a note..." />
           </td>
         </tr>
-      )
+      ))
     },
 
     itemCount () {
@@ -78,6 +62,11 @@ export default {
 
     enabled () {
       return this.itemCount() > 0
+    },
+
+    submit () {
+      if (!this.enabled()) return
+      this.submitted({ itemsToUpdate: this.tableState })
     },
 
     buttonText () {
@@ -104,12 +93,10 @@ export default {
               <h1>Inbox</h1>
               <p>
                 <b-btn
+                  class="submit"
                   variant={this.enabled() ? 'primary' : 'secondary'}
                   disabled={!this.enabled()}
-                  onClick={() =>
-                    this.submitted({
-                      itemsToUpdate: this.tableState
-                    })}
+                  onClick={this.submit}
                 >
                   {this.buttonText()}
                 </b-btn>
@@ -134,9 +121,7 @@ export default {
                   <th />
                 </tr>
               </thead>
-              <tbody>
-                {this.itemRows()}
-              </tbody>
+              <tbody>{this.itemRows()}</tbody>
             </table>
           </b-col>
         </b-row>
