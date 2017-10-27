@@ -54,7 +54,7 @@ if (process.env.CI) {
     useBrowserName: false
   }
   config.coverageIstanbulReporter = {
-    dir: '/tmp/test-results'
+    dir: '/tmp/test-results/coverage'
   }
 }
 
