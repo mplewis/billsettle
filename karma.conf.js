@@ -2,6 +2,8 @@ const { exec } = require('shelljs')
 const { writeFileSync, existsSync } = require('fs')
 const webpack = require('./config/webpack/test.js')
 
+const path = require('path')
+
 const globalSchemaFile = 'tmp/global_schema.js'
 if (!existsSync(globalSchemaFile)) {
   writeFileSync(
@@ -25,8 +27,17 @@ const mocha = {
   require: [require.resolve('bdd-lazy-var/bdd_lazy_var_rspec')]
 }
 
+webpack.module.rules.push({
+  test: /\.jsx?$/,
+  use: {
+    loader: 'istanbul-instrumenter-loader',
+    options: { esModules: true }
+  },
+  exclude: /node_modules|\.spec\.jsx?$/
+})
+
 const config = {
-  reporters: ['mocha'],
+  reporters: ['mocha', 'coverage-istanbul'],
   frameworks: ['mocha', 'sinon-chai'],
   browsers: ['jsdom'],
   client: { mocha },
