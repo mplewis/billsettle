@@ -53,6 +53,9 @@ if (process.env.CI) {
     outputFile: 'karma.xml',
     useBrowserName: false
   }
+  config.coverageIstanbulReporter = {
+    dir: '/tmp/test-results'
+  }
 }
 
 module.exports = function (base) {
